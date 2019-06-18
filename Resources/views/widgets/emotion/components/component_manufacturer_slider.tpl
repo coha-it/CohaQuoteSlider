@@ -42,7 +42,13 @@
                                                     {/if}
 
                                                     {block name="frontend_widgets_manufacturer_slider_item_quote_content"}
-                                                        <div class="quote--content" title="{$supplier.name|escape}">{$coha_quote_content}</div>
+                                                        <div class="quote--content" title="{$supplier.name|escape}">
+                                                            {if $coha_quote_content}
+                                                                {$coha_quote_content}
+                                                            {else}
+                                                                {$supplier.description}
+                                                            {/if}
+                                                        </div>
                                                     {/block}
                                                 </div>
                                             {/block}
