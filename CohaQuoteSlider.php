@@ -17,10 +17,9 @@ class CohaQuoteSlider extends Plugin
     {
         $service = $this->container->get('shopware_attribute.crud_service');
 
-        $service->update('s_categories_attributes', 'coha_navigation_space', 'boolean', [
-            'label' => 'Space to the Right',
-            'supportText' => 'Select if This Menu should create Space on the Right side',
-            'helpText' => 'If this is Checked, a few pixels (about 200-300px) will be spaced to the right',
+        $service->update('s_articles_supplier_attributes', 'coha_is_quote_person', 'boolean', [
+            'label' => 'Is Quote-Person',
+            'helpText' => 'This will give the Supplier some Special Stylings',
 
             //user has the opportunity to translate the attribute field for each shop
             'translatable' => true,
@@ -29,9 +28,46 @@ class CohaQuoteSlider extends Plugin
             'displayInBackend' => true,
 
             //numeric position for the backend view, sorted ascending
-            'position' => 250,
+            'position' => 10,
 
             //user can modify the attribute in the free text field module
+            'custom' => true,
+        ]);
+
+        $service->update('s_articles_supplier_attributes', 'coha_url', 'string', [
+            'label' => 'URL',
+            'helpText' => 'This is the URL for each Supplier inside a Slider',
+            'translatable' => true,
+            'displayInBackend' => true,
+            'position' => 11,
+            'custom' => true,
+        ]);
+
+        $service->update('s_articles_supplier_attributes', 'coha_url_clickable', 'boolean', [
+            'label' => 'URL is clickable',
+            'helpText' => 'if checked, the URL is clickable',
+            'translatable' => true,
+            'displayInBackend' => true,
+            'position' => 12,
+            'custom' => true,
+        ]);
+
+        $service->update('s_articles_supplier_attributes', 'coha_new_tab', 'boolean', [
+            'label' => 'URL opens in new Tab',
+            'supportText' => 'If active, a click on the Quote will open in a new Tab',
+            'helpText' => 'adds target="_blank" to the a-href on a Quote',
+            'translatable' => true,
+            'displayInBackend' => true,
+            'position' => 13,
+            'custom' => true,
+        ]);
+
+        $service->update('s_articles_supplier_attributes', 'coha_quote_content', 'html', [
+            'label' => 'Quote-Content',
+            'helpText' => 'This is the HTML-Content for the Person quoting',
+            'translatable' => true,
+            'displayInBackend' => true,
+            'position' => 14,
             'custom' => true,
         ]);
     }
@@ -45,14 +81,18 @@ class CohaQuoteSlider extends Plugin
     public function uninstall(UninstallContext $context)
     {
         $service = $this->container->get('shopware_attribute.crud_service');
-        $service->delete('s_emotion_attributes', 'coha_font_color');
+        $service->delete('s_articles_supplier_attributes', 'coha_is_quote_person');
+        $service->delete('s_articles_supplier_attributes', 'coha_url');
+        $service->delete('s_articles_supplier_attributes', 'coha_url_clickable');
+        $service->delete('s_articles_supplier_attributes', 'coha_new_tab');
+        $service->delete('s_articles_supplier_attributes', 'coha_quote_content');
     }
 
     public function addLessFiles(){
         return new LessDefinition(
             [],
             [
-                // __DIR__ . '/Resources/views/frontend/_public/src/css/ [...] .css ',
+                __DIR__ . '/Resources/views/frontend/_public/src/less/quoteslider.less',
             ]
         );
     }

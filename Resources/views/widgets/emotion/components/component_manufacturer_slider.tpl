@@ -1,21 +1,14 @@
-{block name="frontend_widgets_manufacturer_slider"}
-    <div class="emotion--manufacturer panel{if !$Data.no_border} has--border{/if}">
+{extends file="parent:widgets/emotion/components/component_manufacturer_slider.tpl"}
 
-        {* Manufacturer title *}
-        {block name="frontend_widgets_manufacturer_slider_title"}
-            {if $Data.manufacturer_slider_title}
-                <div class="panel--title is--underline manufacturer--title">
-                    {$Data.manufacturer_slider_title}
-                </div>
-            {/if}
-        {/block}
+{block name="frontend_widgets_manufacturer_slider"}
+    <div class="emotion--manufacturer {if !$Data.no_border} has--border{/if}">
 
         {* Manufacturer Content *}
         {block name="frontend_widgets_manufacturer_slider_content"}
             <div class="manufacturer--content">
 
                 {block name="frontend_widgets_manufacturer_slider_container"}
-                    <div class="manufacturer--slider product-slider hallowelt123 testwelt123"
+                    <div class="manufacturer--slider product-slider"
                          data-product-slider="true"
                          data-itemMinWidth="280"
                          data-arrowControls="{if $Data.manufacturer_slider_arrows == 1}true{else}false{/if}"
@@ -30,24 +23,51 @@
                                 {/if}
 
                                 {block name="frontend_widgets_manufacturer_slider_item"}
-                                    <div class="manufacturer--item product-slider--item">
+                                    {$coha_is_quote_person      = $supplier.attributes.core->get('coha_is_quote_person')}
+                                    {if $coha_is_quote_person}
 
-                                        {block name="frontend_widgets_manufacturer_slider_item_link"}
-                                            {$supplier|@var_dump}
-                                            <a href="{$supplier.link}" title="{$supplier.name|escape}" class="manufacturer--link">
-                                                {if $supplier.image}
-                                                    {block name="frontend_widgets_manufacturer_slider_item_image"}
-                                                        <img class="manufacturer--image" src="{$supplier.image}" alt="{$supplier.name|escape}" />
+                                        {$coha_url                  = $supplier.attributes.core->get('coha_url')}
+                                        {$coha_url_clickable        = $supplier.attributes.core->get('coha_url_clickable')}
+                                        {$coha_new_tab              = $supplier.attributes.core->get('coha_new_tab')}
+                                        {$coha_quote_content        = $supplier.attributes.core->get('coha_quote_content')}
+                                        
+                                        <div class="manufacturer--item product-slider--item quote--item" style="width: 100%;">
+                                            {block name="frontend_widgets_manufacturer_slider_item_link"}
+                                                <div class="quote--inner">
+                                                    {if $supplier.image}
+                                                        {block name="frontend_widgets_manufacturer_slider_item_quote_image"}
+                                                            <img class="quote--image" src="{$supplier.image}" alt="{$supplier.name|escape}" />
+                                                        {/block}
+                                                    {/if}
+
+                                                    {block name="frontend_widgets_manufacturer_slider_item_quote_content"}
+                                                        <a class="quote--content quote--link {if !$coha_url_clickable}unclickable{/if}" {if $coha_url_clickable}href="{$coha_url}"{/if} title="{$supplier.name|escape}"  {if $coha_new_tab}target="_blank"{/if}>
+                                                            {$coha_quote_content}
+                                                        </a>
                                                     {/block}
-                                                {else}
-                                                    {block name="frontend_widgets_manufacturer_slider_item_text"}
-                                                        <span class="manufacturer--name">{$supplier.name}</span>
-                                                    {/block}
-                                                {/if}
-                                            </a>
-                                        {/block}
-                                    </div>
+                                                </div>
+                                            {/block}
+                                        </div>
+
+                                    {else}
+                                        <div class="manufacturer--item product-slider--item">
+                                            {block name="frontend_widgets_manufacturer_slider_item_link"}
+                                                <a href="{$supplier.link}" title="{$supplier.name|escape}" class="manufacturer--link">
+                                                    {if $supplier.image}
+                                                        {block name="frontend_widgets_manufacturer_slider_item_image"}
+                                                            <img class="manufacturer--image" src="{$supplier.image}" alt="{$supplier.name|escape}" />
+                                                        {/block}
+                                                    {else}
+                                                        {block name="frontend_widgets_manufacturer_slider_item_text"}
+                                                            <span class="manufacturer--name">{$supplier.name}</span>
+                                                        {/block}
+                                                    {/if}
+                                                </a>
+                                            {/block}
+                                        </div>
+                                    {/if}
                                 {/block}
+
                             {/foreach}
                         </div>
                     </div>
@@ -56,3 +76,6 @@
         {/block}
     </div>
 {/block}
+
+
+
