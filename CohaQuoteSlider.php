@@ -1,6 +1,6 @@
 <?php 
 
-namespace CohaBeautifulEmotion;
+namespace CohaQuoteSlider;
 
 use Doctrine\ORM\Tools\SchemaTool;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -10,7 +10,7 @@ use Shopware\Components\Plugin\Context\UninstallContext;
 use Shopware\Components\Theme\LessDefinition;
 use Shopware\Components\Plugin\Context\ActivateContext;
 
-class CohaBeautifulEmotion extends Plugin
+class CohaQuoteSlider extends Plugin
 {
 
     public function install(InstallContext $context)
