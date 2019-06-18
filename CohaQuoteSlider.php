@@ -34,31 +34,49 @@ class CohaQuoteSlider extends Plugin
             'custom' => true,
         ]);
 
-        $service->update('s_articles_supplier_attributes', 'coha_url', 'string', [
-            'label' => 'URL',
-            'helpText' => 'This is the URL for each Supplier inside a Slider',
+        $service->update('s_articles_supplier_attributes', 'coha_quote_classes', 'string', [
+            'label' => 'Classes',
+            'helpText' => 'Define some special Classes for this Quote',
             'translatable' => true,
             'displayInBackend' => true,
             'position' => 11,
             'custom' => true,
         ]);
 
-        $service->update('s_articles_supplier_attributes', 'coha_url_clickable', 'boolean', [
-            'label' => 'URL is clickable',
-            'helpText' => 'if checked, the URL is clickable',
+        $service->update('s_articles_supplier_attributes', 'coha_quote_html_tags', 'string', [
+            'label' => 'HTML-Tags',
+            'helpText' => 'Define some HTML-Tags which will wrap this code',
             'translatable' => true,
             'displayInBackend' => true,
             'position' => 12,
             'custom' => true,
         ]);
 
-        $service->update('s_articles_supplier_attributes', 'coha_new_tab', 'boolean', [
+        $service->update('s_articles_supplier_attributes', 'coha_quote_url', 'string', [
+            'label' => 'URL',
+            'helpText' => 'This is the URL for each Supplier inside a Slider',
+            'translatable' => true,
+            'displayInBackend' => true,
+            'position' => 13,
+            'custom' => true,
+        ]);
+
+        $service->update('s_articles_supplier_attributes', 'coha_quote_url_clickable', 'boolean', [
+            'label' => 'URL is clickable',
+            'helpText' => 'if checked, the URL is clickable',
+            'translatable' => true,
+            'displayInBackend' => true,
+            'position' => 14,
+            'custom' => true,
+        ]);
+
+        $service->update('s_articles_supplier_attributes', 'coha_quote_new_tab', 'boolean', [
             'label' => 'URL opens in new Tab',
             'supportText' => 'If active, a click on the Quote will open in a new Tab',
             'helpText' => 'adds target="_blank" to the a-href on a Quote',
             'translatable' => true,
             'displayInBackend' => true,
-            'position' => 13,
+            'position' => 15,
             'custom' => true,
         ]);
 
@@ -67,7 +85,7 @@ class CohaQuoteSlider extends Plugin
             'helpText' => 'This is the HTML-Content for the Person quoting',
             'translatable' => true,
             'displayInBackend' => true,
-            'position' => 14,
+            'position' => 16,
             'custom' => true,
         ]);
     }
@@ -82,9 +100,11 @@ class CohaQuoteSlider extends Plugin
     {
         $service = $this->container->get('shopware_attribute.crud_service');
         $service->delete('s_articles_supplier_attributes', 'coha_is_quote_person');
-        $service->delete('s_articles_supplier_attributes', 'coha_url');
-        $service->delete('s_articles_supplier_attributes', 'coha_url_clickable');
-        $service->delete('s_articles_supplier_attributes', 'coha_new_tab');
+        $service->delete('s_articles_supplier_attributes', 'coha_quote_classes');
+        $service->delete('s_articles_supplier_attributes', 'coha_quote_html_tags');
+        $service->delete('s_articles_supplier_attributes', 'coha_quote_url');
+        $service->delete('s_articles_supplier_attributes', 'coha_quote_url_clickable');
+        $service->delete('s_articles_supplier_attributes', 'coha_quote_new_tab');
         $service->delete('s_articles_supplier_attributes', 'coha_quote_content');
     }
 

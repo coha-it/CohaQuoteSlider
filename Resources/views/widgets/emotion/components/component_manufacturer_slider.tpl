@@ -26,14 +26,22 @@
                                     {$coha_is_quote_person      = $supplier.attributes.core->get('coha_is_quote_person')}
                                     {if $coha_is_quote_person}
 
-                                        {$coha_url                  = $supplier.attributes.core->get('coha_url')}
-                                        {$coha_url_clickable        = $supplier.attributes.core->get('coha_url_clickable')}
-                                        {$coha_new_tab              = $supplier.attributes.core->get('coha_new_tab')}
+                                        {$coha_quote_url            = $supplier.attributes.core->get('coha_quote_url')}
+                                        {$coha_quote_url_clickable  = $supplier.attributes.core->get('coha_quote_url_clickable')}
+                                        {$coha_quote_new_tab        = $supplier.attributes.core->get('coha_quote_new_tab')}
                                         {$coha_quote_content        = $supplier.attributes.core->get('coha_quote_content')}
-                                        
+                                        {$coha_quote_content        = $supplier.attributes.core->get('coha_quote_content')}
+                                        {$coha_quote_content        = $supplier.attributes.core->get('coha_quote_content')}
+                                        {$coha_quote_classes        = $supplier.attributes.core->get('coha_quote_classes')}
+                                        {$coha_quote_html_tags      = $supplier.attributes.core->get('coha_quote_html_tags')}
+
                                         <div class="manufacturer--item product-slider--item quote--item" style="width: 100%;">
                                             {block name="frontend_widgets_manufacturer_slider_item_link"}
-                                                <div class="quote--inner">
+                                                <div 
+                                                    class="quote--inner {if $coha_quote_classes}{$coha_quote_classes}{/if}" 
+                                                    {if $coha_quote_html_tags} {$coha_quote_html_tags} {/if}
+                                                    >
+
                                                     {if $supplier.image}
                                                         {block name="frontend_widgets_manufacturer_slider_item_quote_image"}
                                                             <img class="quote--image" src="{$supplier.image}" alt="{$supplier.name|escape}" />
@@ -41,7 +49,12 @@
                                                     {/if}
 
                                                     {block name="frontend_widgets_manufacturer_slider_item_quote_content"}
-                                                        <a class="quote--content quote--link {if !$coha_url_clickable}unclickable{/if}" {if $coha_url_clickable}href="{$coha_url}"{/if} title="{$supplier.name|escape}"  {if $coha_new_tab}target="_blank"{/if}>
+                                                        <a 
+                                                            class="quote--content quote--link {if !$coha_quote_url_clickable}unclickable{/if} " 
+                                                            {if $coha_quote_url_clickable}href="{$coha_quote_url}"{/if} 
+                                                            title="{$supplier.name|escape}"
+                                                            {if $coha_quote_new_tab} target="_blank" {/if}
+                                                            >
                                                             {$coha_quote_content}
                                                         </a>
                                                     {/block}
