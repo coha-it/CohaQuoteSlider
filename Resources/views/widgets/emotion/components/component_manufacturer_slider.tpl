@@ -37,12 +37,12 @@
                                                 <div class="quote--inner {if $coha_quote_classes}{$coha_quote_classes}{/if}" {if $coha_quote_html_tags} {$coha_quote_html_tags} {/if}>
                                                     {if $supplier.image}
                                                         {block name="frontend_widgets_manufacturer_slider_item_quote_image"}
-                                                            <img class="quote--image" src="{$supplier.image}" alt="{$supplier.name|escape}" />
+                                                            <img class="quote--image" src="{$supplier.image}" alt="{$supplier.name|escape}" title="{$supplier.name|escape}" />
                                                         {/block}
                                                     {/if}
 
                                                     {block name="frontend_widgets_manufacturer_slider_item_quote_content"}
-                                                        <div class="quote--content" title="{$supplier.name|escape}">
+                                                        <div class="quote--content">
                                                             {if $coha_quote_content}
                                                                 {$coha_quote_content}
                                                             {else}
