@@ -52,34 +52,6 @@ class CohaQuoteSlider extends Plugin
             'custom' => true,
         ]);
 
-        $service->update('s_articles_supplier_attributes', 'coha_quote_url', 'string', [
-            'label' => 'URL',
-            'helpText' => 'This is the URL for each Supplier inside a Slider',
-            'translatable' => true,
-            'displayInBackend' => true,
-            'position' => 13,
-            'custom' => true,
-        ]);
-
-        $service->update('s_articles_supplier_attributes', 'coha_quote_url_clickable', 'boolean', [
-            'label' => 'URL is clickable',
-            'helpText' => 'if checked, the URL is clickable',
-            'translatable' => true,
-            'displayInBackend' => true,
-            'position' => 14,
-            'custom' => true,
-        ]);
-
-        $service->update('s_articles_supplier_attributes', 'coha_quote_new_tab', 'boolean', [
-            'label' => 'URL opens in new Tab',
-            'supportText' => 'If active, a click on the Quote will open in a new Tab',
-            'helpText' => 'adds target="_blank" to the a-href on a Quote',
-            'translatable' => true,
-            'displayInBackend' => true,
-            'position' => 15,
-            'custom' => true,
-        ]);
-
         $service->update('s_articles_supplier_attributes', 'coha_quote_content', 'html', [
             'label' => 'Quote-Content',
             'helpText' => 'This is the HTML-Content for the Person quoting',
@@ -102,9 +74,6 @@ class CohaQuoteSlider extends Plugin
         $service->delete('s_articles_supplier_attributes', 'coha_is_quote_person');
         $service->delete('s_articles_supplier_attributes', 'coha_quote_classes');
         $service->delete('s_articles_supplier_attributes', 'coha_quote_html_tags');
-        $service->delete('s_articles_supplier_attributes', 'coha_quote_url');
-        $service->delete('s_articles_supplier_attributes', 'coha_quote_url_clickable');
-        $service->delete('s_articles_supplier_attributes', 'coha_quote_new_tab');
         $service->delete('s_articles_supplier_attributes', 'coha_quote_content');
     }
 
