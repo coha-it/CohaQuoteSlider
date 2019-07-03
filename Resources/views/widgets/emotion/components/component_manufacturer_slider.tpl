@@ -22,6 +22,12 @@
                                     {$supplier.link = {url module=frontend controller=listing action=manufacturer sSupplier=$supplier.id}}
                                 {/if}
 
+                                {if $supplier.attributes.core->get('coha_url')}
+                                    {$supplier.link = $supplier.attributes.core->get('coha_url')}
+                                {/if}
+
+                                {$coha_url_target_blank = $supplier.attributes.core->get('coha_url_target_blank')}
+
                                 {block name="frontend_widgets_manufacturer_slider_item"}
                                     {$coha_is_quote_person      = $supplier.attributes.core->get('coha_is_quote_person')}
                                     {if $coha_is_quote_person}
@@ -57,7 +63,7 @@
                                     {else}
                                         <div class="manufacturer--item product-slider--item">
                                             {block name="frontend_widgets_manufacturer_slider_item_link"}
-                                                <a href="{$supplier.link}" title="{$supplier.name|escape}" class="manufacturer--link">
+                                                <a href="{$supplier.link}" title="{$supplier.name|escape}" class="manufacturer--link" {if $coha_url_target_blank} target="_blank" {/if} >
                                                     {if $supplier.image}
                                                         {block name="frontend_widgets_manufacturer_slider_item_image"}
                                                             <img class="manufacturer--image" src="{$supplier.image}" alt="{$supplier.name|escape}" />

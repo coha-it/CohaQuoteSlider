@@ -60,6 +60,33 @@ class CohaQuoteSlider extends Plugin
             'position' => 16,
             'custom' => true,
         ]);
+
+        $this->update();
+    }
+
+    public function update() {
+
+        $service = $this->container->get('shopware_attribute.crud_service');
+
+        // Custom URL
+        $service->update('s_articles_supplier_attributes', 'coha_url', 'string', [
+            'label' => 'URL',
+            'helpText' => 'When set, it will replace the URL for each Banner-Slider',
+            'translatable' => true,
+            'displayInBackend' => true,
+            'position' => 20,
+            'custom' => true,
+        ]);
+
+        // Open URL in New Tab
+        $service->update('s_articles_supplier_attributes', 'coha_url_target_blank', 'boolean', [
+            'label' => 'URL open in New Tab',
+            'helpText' => 'Open the clicked URL in a new Window/Tab',
+            'translatable' => true,
+            'displayInBackend' => true,
+            'position' => 21,
+            'custom' => true,
+        ]);
     }
 
     // On Activation
@@ -75,6 +102,8 @@ class CohaQuoteSlider extends Plugin
         $service->delete('s_articles_supplier_attributes', 'coha_quote_classes');
         $service->delete('s_articles_supplier_attributes', 'coha_quote_html_tags');
         $service->delete('s_articles_supplier_attributes', 'coha_quote_content');
+        $service->delete('s_articles_supplier_attributes', 'coha_url');
+        $service->delete('s_articles_supplier_attributes', 'coha_url_target_blank');
     }
 
     public function addLessFiles(){
