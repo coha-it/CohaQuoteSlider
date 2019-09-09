@@ -65,7 +65,7 @@ class CohaQuoteSlider extends Plugin
         $this->update();
     }
 
-    public function update(UpdateContext $context)
+    public function update(UpdateContext $context) {
 
         $service = $this->container->get('shopware_attribute.crud_service');
 
